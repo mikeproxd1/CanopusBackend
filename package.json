@@ -1,0 +1,28 @@
+{
+  "name": "canopusbackend",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "devStart": "nodemon -r dotenv/config index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jesusej/CanopusBackend.git"
+  },
+  "author": "Canopus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jesusej/CanopusBackend/issues"
+  },
+  "homepage": "https://github.com/jesusej/CanopusBackend#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongoose": "^6.2.10"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0",
+    "nodemon": "^2.0.15"
+  }
+}
