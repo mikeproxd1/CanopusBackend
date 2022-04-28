@@ -33,9 +33,8 @@ async function manageFiles(req, res) {
     return res.status(201).send("Success!!");
   } catch(e) {
     console.log(e);
-    output = e;
 
-    return res.status(501).send("Failure");
+    return res.status(406).send("Failure");
   }
 }
 

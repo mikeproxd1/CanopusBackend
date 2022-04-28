@@ -4,6 +4,8 @@ const cors = require("cors");
 
 const app = express();
 
+const enterpriseModel = require("./models/Enterprise");
+
 let xlsxRoutes = require("./routes/v1/cargaXlsx");
 
 let PORT = process.env.PORT || 3001;
