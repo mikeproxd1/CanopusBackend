@@ -1,13 +1,17 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const app = express();
 const cors = require("cors");
 
-const movementsModel = require("./models/Movements");
+const app = express();
+
+const enterpriseModel = require("./models/Enterprise");
+
+let xlsxRoutes = require("./routes/v1/cargaXlsx");
 
 let PORT = process.env.PORT || 3001;
 
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 app.use(
   cors({
@@ -15,19 +19,20 @@ app.use(
   })
 );
 
+app.use('/xlsx', xlsxRoutes);
+
 mongoose.connect(process.env.KEY, {
   useNewUrlParser: true,
 });
 
 app.get("/", async (req, res) => {
-  movementsModel.find({}, (err, result) => {
+  enterpriseModel.find({}, (err, docs) => {
     if (err) {
       res.send(err);
       console.log(err);
     }
-
-    res.send(result);
-    console.log(result);
+    res.send(docs);
+    console.log(docs);
   });
 });
 
