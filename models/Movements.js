@@ -1,13 +1,17 @@
 const mongoose = require('mongoose');
 
 const movementsSchema = new mongoose.Schema({
-  typeMovement: {
+  date: {
+    type: Date,
+    required: false,
+  },
+  type: {
     type: String,
-    required: true,
+    required: false,
   },
   concept: {
     type: String,
-    required: true,
+    required: false,
   },
   charge: {
     type: Number,
@@ -16,8 +20,7 @@ const movementsSchema = new mongoose.Schema({
   deposit: {
     type: Number,
     required: false,
-  }
+  },
 })
 
-const movements = mongoose.model("movements", movementsSchema)
-module.exports = movements;
+module.exports = movementsSchema;
