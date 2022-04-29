@@ -30,7 +30,7 @@ async function manageFiles(req, res) {
 
     console.log(enterprise);
 
-    return res.status(201).send("Success!!");
+    return res.status(201).send(enterprise);
   } catch(e) {
     console.log(e);
 
