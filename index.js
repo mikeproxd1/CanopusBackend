@@ -25,9 +25,9 @@ app.get("/", async (req, res) => {
       res.send(err);
       console.log(err);
     }
-
-    res.send(result);
-    console.log(result);
+    let doc = docs[docs.length-1]
+    res.send(doc);
+    console.log(doc);
   });
 });
 
