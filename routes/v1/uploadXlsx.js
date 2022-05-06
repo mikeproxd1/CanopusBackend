@@ -1,5 +1,4 @@
 const multer = require("multer");
-const xlsx = require("xlsx");
 const express = require("express");
 
 const manageFiles = require("../../tools/fileManager");
@@ -12,6 +11,6 @@ var upload = multer({
     storage: storage
 });
 
-router.post("/uploadXlsx", upload.fields([{name: 'file'}, {name: 'file2'}]), manageFiles);
+router.post("/upload-xlsx", upload.fields([{name: 'file'}, {name: 'file2'}]), manageFiles);
 
 module.exports = router;

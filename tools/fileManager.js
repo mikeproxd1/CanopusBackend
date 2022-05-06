@@ -13,7 +13,9 @@ async function manageFiles(req, res) {
     let nameEnterprise = req.body.nameEnterprise;
     let username = req.body.username;
 
-    let enterprise = await createEnterpriseAccounts(data, nameEnterprise, username);
+    let enterprise = await enterpriseModel.findOne({ nameEnterprise: nameEnterprise}).exec()
+    
+    enterprise = await createEnterpriseAccounts(data, nameEnterprise, username, enterprise);
 
     await enterprise.save();
 
@@ -26,10 +28,10 @@ async function manageFiles(req, res) {
   }
 }
 
-async function createEnterpriseAccounts(data, nameEnterprise, username) {
+async function createEnterpriseAccounts(data, nameEnterprise, username, enterprise) {
   let accounts = await createAccounts(data[0]);
   accounts = await createMovements(data[1], accounts);
-  const enterprise = new enterpriseModel({nameEnterprise, accounts});
+  enterprise.accounts = accounts;
 
   return enterprise;
 }
