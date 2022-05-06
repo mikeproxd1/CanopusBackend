@@ -10,4 +10,4 @@ const enterpriseSchema = new mongoose.Schema({
 })
 
 const enterprise = mongoose.model("enterprises", enterpriseSchema)
-module.exports = enterprise;
+module.exports =  enterprise;

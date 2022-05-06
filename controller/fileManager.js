@@ -1,34 +1,20 @@
 const enterpriseModel = require("../models/Enterprise");
 
-const xlsxToData = require("../tools/xlsxConverter");
+const { xlsxToData } = require("./../tools/xlsxConverter");
 const { createAccounts } = require("../tools/accountManager");
 const { createMovements } = require("../tools/movementManager");
 
-async function manageFiles(req, res) {
-  try {
-    let data = [
-      xlsxToData(req.files.file[0]), 
-      xlsxToData(req.files.file2[0])
-    ]
-    let nameEnterprise = req.body.nameEnterprise;
-    let username = req.body.username;
-
-    let enterprise = await enterpriseModel.findOne({ nameEnterprise: nameEnterprise}).exec()
+async function manageFiles(files, nameEnterprise, username) {
+  let data = [xlsxToData(files[0]), xlsxToData(files[1])];
+  let enterprise = await enterpriseModel.findOne({nameEnterprise}).exec();
     
-    enterprise = await createEnterpriseAccounts(data, nameEnterprise, username, enterprise);
+  enterprise = await createEnterpriseAccounts(data, enterprise);
+  await enterprise.save();
 
-    await enterprise.save();
-
-    console.log("Success!!");
-    return res.status(201).send(enterprise);
-  } catch(e) {
-    console.log(e);
-
-    return res.status(406).send("Failure");
-  }
+  return enterprise;
 }
 
-async function createEnterpriseAccounts(data, nameEnterprise, username, enterprise) {
+async function createEnterpriseAccounts(data, enterprise) {
   let accounts = await createAccounts(data[0]);
   accounts = await createMovements(data[1], accounts);
   enterprise.accounts = accounts;
