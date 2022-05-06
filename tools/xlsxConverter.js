@@ -8,4 +8,13 @@ function xlsxToData(file) {
   return data;
 }
 
-module.exports = xlsxToData;
+function generateXlsx(file) {
+  const workbook = xlsx.utils.book_new();
+  const filename = "file";
+  const dataSheet = xlsx.utils.json_to_sheet(file);
+  xlsx.utils.book_append_sheet(workbook, dataSheet, filename.replace('/', ''));
+
+  return xlsx.write(workbook, { type: 'buffer', bookType: 'xlsx' });
+}
+
+module.exports = { xlsxToData, generateXlsx};
