@@ -1,7 +1,7 @@
 const multer = require("multer");
 const express = require("express");
 
-const manageFiles = require("../../tools/fileManager");
+const manageFiles = require("../../controller/fileManager");
 
 let router = express.Router();
 
