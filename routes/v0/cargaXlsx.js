@@ -3,7 +3,7 @@ const xlsx = require("xlsx");
 const express = require("express");
 const mongoose = require("mongoose");
 
-const enterpriseModel = require("./../../models/Enterprise");
+const enterpriseModel = require("../../models/Enterprise");
 
 let router = express.Router();
 
