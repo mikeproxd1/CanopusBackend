@@ -1,4 +1,4 @@
-const express = require("express"); //hola sssas
+const express = require("express"); //hola
 const mongoose = require("mongoose");
 const cors = require("cors");
 
